@@ -1672,7 +1672,19 @@ end
 
 function LoadModel(hash)
     isModelLoaded = false
-    local playerPed = PlayerPedId()
+
+	local playerPed = PlayerPedId()
+
+	--If entity has already same model we dont need to set it again (it prevent flashing ped)
+	if GetEntityModel(playerPed) == characterModel then
+		isModelLoaded = true
+
+		if not Config.StandAlone then
+			TriggerEvent('skinchanger:modelLoaded')
+		end
+		return
+	end
+
     SetEntityInvincible(playerPed, true)
 
     if IsModelInCdimage(hash) and IsModelValid(hash) then
