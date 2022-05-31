@@ -1,22 +1,27 @@
 fx_version 'cerulean'
-games { 'gta5' }
+game 'gta5'
 
 client_scripts {
     '@es_extended/locale.lua',
-    'shared/config.lua',
     'locales/en.lua',
     --'client/blacklist.lua',
     'client/camera.lua',
     'client/main.lua'
 }
 
+shared_scripts {
+	'@es_extended/imports.lua',
+    'shared/config.lua'
+}
+
 server_scripts {
     '@mysql-async/lib/MySQL.lua',
-    'shared/config.lua',
     'server/main.lua'
 }
 
-ui_page('ui/index.html')
+ui_page { 
+	'ui/index.html'
+}
 
 files {
     'ui/index.html',
